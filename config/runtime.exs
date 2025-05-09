@@ -39,12 +39,9 @@ if config_env() == :prod do
   config :project, :dns_cluster_query, System.get_env("DNS_CLUSTER_QUERY")
 
   config :project, ProjectWeb.Endpoint,
-    url: [host: System.get_env("RENDER_EXTERNAL_HOSTNAME"), port: 443],
-    http: [
-      port: String.to_integer(System.get_env("PORT") || "4000"),
-      transport_options: [socket_opts: [:inet6]]
-    ],
-    secret_key_base: System.get_env("SECRET_KEY_BASE")
+    url: [host: host, port: 443],
+    http: [port: port],
+    secret_key_base: secret_key_base
 
   # ## SSL Support
   #
